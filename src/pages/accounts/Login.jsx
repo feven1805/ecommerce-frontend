@@ -5,32 +5,32 @@ function Login() {
   const [role, setRole] = useState('student');
   const [showPassword, setShowPassword] = useState(false);
 
-  // 1. Create variables to hold the user's input
+  ut
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // 2. This function connects your button to the URL
+  
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevents the page from refreshing
+    e.preventDefault(); 
     
-    // The Live Backend URL from your screenshot
+    
     const apiURL = 'https://campus-ecommerce-api.onrender.com/api/v1/accounts/auth/login/';
 
     try {
       const response = await fetch(apiURL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }), // Sends data to the URL
+        body: JSON.stringify({ email, password }), 
       });
 
       const data = await response.json();
 
       if (response.ok) {
         alert("✅ Success! You are logged in.");
-        // Saves the token so the app knows who you are
+        
         localStorage.setItem('token', data.access); 
       } else {
-        // Shows the error message from the Django Backend
+        
         alert("❌ Login Failed: " + (data.detail || "Check your email/password"));
       }
     } catch (error) {
@@ -62,7 +62,7 @@ function Login() {
           </button>
         </div>
 
-        {/* 3. The Form now uses handleLogin */}
+        {}
         <form onSubmit={handleLogin}>
           <div className="input-group">
             <label className="input-label bold-text">EMAIL</label>
