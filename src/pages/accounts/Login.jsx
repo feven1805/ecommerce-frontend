@@ -4,37 +4,30 @@ import '../../styles/Login.css';
 function Login() {
   const [role, setRole] = useState('student');
   const [showPassword, setShowPassword] = useState(false);
-
-  ut
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  
   const handleLogin = async (e) => {
-    e.preventDefault(); 
-    
-    
+    e.preventDefault();
     const apiURL = 'https://campus-ecommerce-api.onrender.com/api/v1/accounts/auth/login/';
 
     try {
       const response = await fetch(apiURL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }), 
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
         alert("✅ Success! You are logged in.");
-        
-        localStorage.setItem('token', data.access); 
+        localStorage.setItem('token', data.access);
       } else {
-        
-        alert("❌ Login Failed: " + (data.detail || "Check your email/password"));
+        alert("❌ Login Failed: " + (data.detail || "Check credentials"));
       }
     } catch (error) {
-      alert("⚠️ Error: Server not responding. Check your internet.");
+      alert("⚠️ Server Error. Check internet connection.");
     }
   };
 
@@ -62,7 +55,6 @@ function Login() {
           </button>
         </div>
 
-        {}
         <form onSubmit={handleLogin}>
           <div className="input-group">
             <label className="input-label bold-text">EMAIL</label>
@@ -82,7 +74,6 @@ function Login() {
           <div className="input-group">
             <div className="label-row">
               <label className="input-label bold-text">PASSWORD</label>
-              <span className="forgot-password bold-text">Forgot Password?</span>
             </div>
             <div className="input-field-wrapper">
               <span className="field-icon">🔒</span>
@@ -102,10 +93,6 @@ function Login() {
 
           <button type="submit" className="login-button">LOGIN →</button>
         </form>
-
-        <p className="signup-text">
-          Don't have an account? <span className="signup-link bold-text">Sign up</span>
-        </p>
       </div>
     </div>
   );
